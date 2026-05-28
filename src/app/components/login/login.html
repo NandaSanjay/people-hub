@@ -1,0 +1,30 @@
+<div class="login-container">
+
+  <div class="login-card">
+    <!-- ✅ BRANDING -->
+    <div class="login-header">
+       <img src="assets/logo.png" class="logo" />
+\      <h2>PeopleHub</h2>
+      <p>Sign in to your HR dashboard</p>
+    </div>
+
+    <!-- FORM -->
+    <input
+      type="text"
+      placeholder="Username"
+      [(ngModel)]="username"
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+
+    <button (click)="login()">Login</button>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+  </div>
+
+</div>

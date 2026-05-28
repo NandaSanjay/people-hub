@@ -4,7 +4,6 @@
 
 .page-card {
   background: white;
-  margin: 20px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -43,18 +42,51 @@ h2 {
 }
 
 /* DASHBOARD CARD */
+/* =========================
+   DASHBOARD CARD
+========================= */
+
 .widget {
+  background: #1e293b;
+  padding: 18px;
+  border-radius: 10px;
+
   display: flex;
   align-items: center;
   gap: 14px;
 
-  background: white;
-  padding: 18px;
-  border-radius: 10px;
-
-  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
   transition: all 0.2s ease;
 }
+
+/* HOVER */
+.widget:hover {
+  background: #243246;
+}
+
+/* ICON */
+.widget i {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+/* TITLE (subtle label) */
+.widget-content h3 {
+  margin: 0;
+  font-size: 13px;
+
+  color: #94a3b8;   /* ✅ FIXED: better readability */
+  font-weight: 500;
+}
+
+/* VALUE (MAIN KPI) */
+.widget-content p {
+  margin: 4px 0 0;
+  font-size: 26px;
+  font-weight: 700;
+
+  color: #f8fafc;   /* ✅ FIXED: strong contrast */
+}
+
 
 .widget:hover {
   transform: translateY(-4px);
@@ -83,19 +115,6 @@ h2 {
   font-size: 18px;
 }
 
-/* TEXT */
-.widget-content h3 {
-  margin: 0;
-  font-size: 13px;
-  color: #777;
-}
-
-.widget-content p {
-  margin: 4px 0 0;
-  font-size: 24px;
-  font-weight: 600;
-  color: #2c3e50;
-}
 
 /* =========================
    SEARCH + FILTERS

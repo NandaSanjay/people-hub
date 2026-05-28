@@ -1,11 +1,33 @@
 <div *ngIf="employee as emp; else loading">
-
-  <div class="detail-card">
-
-    <!-- 🔹 Header -->
+  <!-- ✅ FULL PAGE CONTAINER -->
+  <div class="detail-container">
+    <!-- 🔹 HEADER -->
     <div class="detail-header">
-      <div class="avatar">
-        {{ emp.firstName[0] }}
+      <div class="profile-image-container">
+        <!-- Show uploaded image if available, otherwise show avatar with initials -->
+        <img
+          *ngIf="emp.profileImage"
+          [src]="emp.profileImage"
+          alt="Profile"
+          class="profile-image"
+        />
+        <div *ngIf="!emp.profileImage" class="avatar">
+          {{ emp.firstName[0] }}{{ emp.lastName[0] }}
+        </div>
+        <button
+          class="upload-btn"
+          (click)="triggerImageUpload()"
+          title="Upload Image"
+        >
+          📷
+        </button>
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          (change)="onImageUpload($event)"
+          style="display: none"
+        />
       </div>
 
       <div>
@@ -14,112 +36,209 @@
       </div>
     </div>
 
-    <!-- 🔹 Tabs -->
+    <!-- 🔹 TABS -->
     <div class="tabs">
-      <div 
-        class="tab" 
-        [class.active]="activeTab === 'profile'" 
-        (click)="selectTab('profile')">
+      <div
+        class="tab"
+        [class.active]="activeTab === 'profile'"
+        (click)="selectTab('profile')"
+      >
         Profile
       </div>
 
-      <div 
-        class="tab" 
-        [class.active]="activeTab === 'job'" 
-        (click)="selectTab('job')">
+      <div
+        class="tab"
+        [class.active]="activeTab === 'job'"
+        (click)="selectTab('job')"
+      >
         Job Info
       </div>
 
-      <div 
-        class="tab" 
-        [class.active]="activeTab === 'comp'" 
-        (click)="selectTab('comp')">
+      <div
+        class="tab"
+        [class.active]="activeTab === 'comp'"
+        (click)="selectTab('comp')"
+      >
         Compensation
       </div>
     </div>
 
-    <!-- 🔹 TAB CONTENT -->
-
     <!-- ✅ PROFILE TAB -->
     <div *ngIf="activeTab === 'profile'" class="tab-content">
-
       <div class="detail-grid">
-        <div>
+        <div class="detail-item">
           <label>Email</label>
           <p>{{ emp.email }}</p>
         </div>
 
-        <div>
+        <div class="detail-item">
           <label>Phone</label>
           <p>{{ emp.phone || 'N/A' }}</p>
         </div>
 
-        <div>
+        <div class="detail-item full">
           <label>Address</label>
+          <p>{{ emp.address?.address }}, {{ emp.address?.city }}</p>
+        </div>
+
+        <div class="detail-item">
+          <label>Status</label>
           <p>
-            {{ emp.address?.address }},
-            {{ emp.address?.city }}
+            <mat-chip-set>
+              <mat-chip
+                [class.status-active]="(emp.status || 'active') === 'active'"
+                [class.status-inactive]="(emp.status || 'active') === 'inactive'"
+              >
+                {{ (emp.status || 'active') === 'active' ? 'Active' : 'Inactive'
+                }}
+              </mat-chip>
+            </mat-chip-set>
           </p>
         </div>
       </div>
-
     </div>
 
     <!-- ✅ JOB TAB -->
     <div *ngIf="activeTab === 'job'" class="tab-content">
-
       <div class="detail-grid">
-        <div>
+        <div class="detail-item">
           <label>Department</label>
           <p>{{ emp.company?.department || 'Operations' }}</p>
         </div>
 
-        <div>
+        <div class="detail-item">
           <label>Company</label>
           <p>{{ emp.company?.name }}</p>
         </div>
 
-        <div>
+        <div class="detail-item">
           <label>Status</label>
-          <p>Active</p>
+          <p>
+            <mat-chip-set>
+              <mat-chip
+                [class.status-active]="(emp.status || 'active') === 'active'"
+                [class.status-inactive]="(emp.status || 'active') === 'inactive'"
+              >
+                {{ (emp.status || 'active') === 'active' ? 'Active' : 'Inactive'
+                }}
+              </mat-chip>
+            </mat-chip-set>
+          </p>
         </div>
       </div>
-
     </div>
 
     <!-- ✅ COMPENSATION TAB -->
     <div *ngIf="activeTab === 'comp'" class="tab-content">
-
       <div class="detail-grid">
-        <div>
+        <div class="detail-item">
           <label>Salary</label>
           <p>₹{{ (emp.age || 25) * 1000 | number }}</p>
         </div>
 
-        <div>
+        <div class="detail-item">
           <label>Bonus</label>
           <p>₹{{ (emp.age || 25) * 200 | number }}</p>
         </div>
 
-        <div>
+        <div class="detail-item">
           <label>Pay Grade</label>
           <p>Level {{ emp.age % 5 + 1 }}</p>
         </div>
       </div>
-
     </div>
 
-    <!-- 🔹 Actions -->
+    <!-- 🔹 ACTIONS -->
     <div class="detail-actions">
       <button routerLink="/employees">⬅ Back</button>
-      <button class="edit">Edit</button>
+      <button class="edit" (click)="openEdit()">Edit</button>
     </div>
-
   </div>
-
 </div>
 
+<!-- ✅ EDIT MODAL (UNCHANGED but scoped) -->
+<div class="modal-overlay" *ngIf="isEditOpen">
+  <div class="modal">
+    <h3>Edit Employee</h3>
+
+    <!-- PERSONAL -->
+    <div class="form-section">
+      <h4>Personal Info</h4>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input [(ngModel)]="editForm.firstName" name="firstName" />
+        </div>
+
+        <div class="form-group">
+          <label>Last Name</label>
+          <input [(ngModel)]="editForm.lastName" name="lastName" />
+        </div>
+
+        <div class="form-group full">
+          <label>Email</label>
+          <input [(ngModel)]="editForm.email" name="email" />
+        </div>
+
+        <div class="form-group full">
+          <label>Phone</label>
+          <input [(ngModel)]="editForm.phone" name="phone" />
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPANY -->
+    <div class="form-section">
+      <h4>Company Info</h4>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Department</label>
+          <input [(ngModel)]="editForm.department" name="department" />
+        </div>
+
+        <div class="form-group">
+          <label>Company</label>
+          <input [(ngModel)]="editForm.companyName" name="companyName" />
+        </div>
+
+        <div class="form-group full">
+          <label>Status</label>
+          <select [(ngModel)]="editForm.status" name="status">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="form-section">
+      <h4>Address</h4>
+
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Address</label>
+          <input [(ngModel)]="editForm.address" name="address" />
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <input [(ngModel)]="editForm.city" name="city" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="modal-actions">
+      <button (click)="closeEdit()">Cancel</button>
+      <button class="save" (click)="saveEmployee()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
 <ng-template #loading>
   <div class="loading">Loading employee details...</div>
 </ng-template>
-``

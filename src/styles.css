@@ -1,1 +1,212 @@
+/* =========================
+   DARK MODE ROOT
+========================= */
+
+body.dark {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+/* MAIN AREA */
+body.dark .main {
+  background: #111827;
+}
+
+/* HEADER */
+body.dark .header {
+  background: #1f2937;
+}
+
+/* SIDEBAR */
+body.dark .sidebar {
+  background: #111827;
+}
+
+/* BREADCRUMB */
+body.dark .breadcrumb {
+  color: #9ca3af;
+}
+
+/* =========================
+   CARDS / DASHBOARD
+========================= */
+
+body.dark .page-card,
+body.dark .widget {
+  background: #1f2937;
+  color: #e5e7eb;
+  box-shadow: none;
+}
+
+/* TABLE */
+body.dark .table {
+  border-color: #374151;
+}
+
+body.dark .row {
+  border-color: #374151;
+}
+
+body.dark .row.header {
+  background: #374151;
+}
+
+body.dark .row:hover {
+  background: #2a3441;
+}
+
+/* TEXT LIGHT */
+body.dark .widget-content h3,
+body.dark .count,
+body.dark .emp-id {
+  color: #9ca3af;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+body.dark .search-bar,
+body.dark select {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #e5e7eb;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+body.dark button {
+  background: #374151;
+  color: white;
+}
+
+body.dark .edit {
+  background: #2563eb;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+body.dark .empty {
+  background: #1f2937;
+  border-color: #374151;
+  color: #9ca3af;
+}
 /* You can add global styles to this file, and also import other style files */
+
+
+
+/* FIX INPUT BACKGROUND */
+body.dark .search-bar input {
+  background: transparent;   /* ✅ removes white */
+  color: #e5e7eb;            /* ✅ readable text */
+  border: none;              /* ✅ clean look */
+}
+
+/* PLACEHOLDER FIX */
+body.dark .search-bar input::placeholder {
+  color: #9ca3af;            /* ✅ soft grey */
+}
+
+
+/* =========================
+   DETAIL PAGE - DARK MODE
+========================= */
+
+body.dark .detail-card {
+  background: #1f2937;
+  color: #e5e7eb;
+  box-shadow: none;
+}
+
+
+body.dark .subtitle {
+  color: #9ca3af;
+}
+
+body.dark .detail-header h2 {
+  color: #f9fafb;
+}
+
+
+body.dark .detail-grid label {
+  color: #9ca3af;   /* subtle label */
+}
+
+body.dark .detail-grid p {
+  color: #f3f4f6;   /* main value */
+}
+
+
+body.dark .tabs {
+  border-bottom: 1px solid #374151;
+}
+
+/* NORMAL TAB */
+body.dark .tab {
+  color: #9ca3af;
+}
+
+/* ACTIVE TAB */
+body.dark .tab.active {
+  color: #ffffff;
+  border-bottom: 3px solid #3b82f6;
+}
+
+/* HOVER */
+body.dark .tab:hover {
+  background: #374151;
+}
+
+
+body.dark .detail-actions button {
+  background: #374151;
+  color: white;
+}
+
+body.dark .detail-actions button:first-child {
+  background: #3b82f6;
+}
+
+body.dark .detail-actions .edit {
+  background: #f59e0b;
+}
+
+body.dark .detail-card {
+  border: 1px solid #374151;
+}
+
+body.dark .detail-card:hover {
+  border-color: #3b82f6;
+}
+
+.tab {
+  transition: all 0.2s ease;
+}
+
+
+body.dark .detail-container {
+  background: transparent;
+  color: #e5e7eb;
+}
+
+/* DARK MODE */
+body.dark .detail-item label {
+  color: #9ca3af;
+}
+
+body.dark .detail-item p {
+  color: #f3f4f6;
+}
+
+/* DARK */
+body.dark .tab {
+  color: #9ca3af;
+}
+
+body.dark .tab.active {
+  color: #ffffff;
+}

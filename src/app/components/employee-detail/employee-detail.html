@@ -1,0 +1,125 @@
+<div *ngIf="employee as emp; else loading">
+
+  <div class="detail-card">
+
+    <!-- 🔹 Header -->
+    <div class="detail-header">
+      <div class="avatar">
+        {{ emp.firstName[0] }}
+      </div>
+
+      <div>
+        <h2>{{ emp.firstName }} {{ emp.lastName }}</h2>
+        <p class="subtitle">EMP-{{ emp.id }}</p>
+      </div>
+    </div>
+
+    <!-- 🔹 Tabs -->
+    <div class="tabs">
+      <div 
+        class="tab" 
+        [class.active]="activeTab === 'profile'" 
+        (click)="selectTab('profile')">
+        Profile
+      </div>
+
+      <div 
+        class="tab" 
+        [class.active]="activeTab === 'job'" 
+        (click)="selectTab('job')">
+        Job Info
+      </div>
+
+      <div 
+        class="tab" 
+        [class.active]="activeTab === 'comp'" 
+        (click)="selectTab('comp')">
+        Compensation
+      </div>
+    </div>
+
+    <!-- 🔹 TAB CONTENT -->
+
+    <!-- ✅ PROFILE TAB -->
+    <div *ngIf="activeTab === 'profile'" class="tab-content">
+
+      <div class="detail-grid">
+        <div>
+          <label>Email</label>
+          <p>{{ emp.email }}</p>
+        </div>
+
+        <div>
+          <label>Phone</label>
+          <p>{{ emp.phone || 'N/A' }}</p>
+        </div>
+
+        <div>
+          <label>Address</label>
+          <p>
+            {{ emp.address?.address }},
+            {{ emp.address?.city }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ✅ JOB TAB -->
+    <div *ngIf="activeTab === 'job'" class="tab-content">
+
+      <div class="detail-grid">
+        <div>
+          <label>Department</label>
+          <p>{{ emp.company?.department || 'Operations' }}</p>
+        </div>
+
+        <div>
+          <label>Company</label>
+          <p>{{ emp.company?.name }}</p>
+        </div>
+
+        <div>
+          <label>Status</label>
+          <p>Active</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ✅ COMPENSATION TAB -->
+    <div *ngIf="activeTab === 'comp'" class="tab-content">
+
+      <div class="detail-grid">
+        <div>
+          <label>Salary</label>
+          <p>₹{{ (emp.age || 25) * 1000 | number }}</p>
+        </div>
+
+        <div>
+          <label>Bonus</label>
+          <p>₹{{ (emp.age || 25) * 200 | number }}</p>
+        </div>
+
+        <div>
+          <label>Pay Grade</label>
+          <p>Level {{ emp.age % 5 + 1 }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 🔹 Actions -->
+    <div class="detail-actions">
+      <button routerLink="/employees">⬅ Back</button>
+      <button class="edit">Edit</button>
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="loading">Loading employee details...</div>
+</ng-template>
+``

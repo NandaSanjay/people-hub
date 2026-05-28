@@ -1,0 +1,111 @@
+.detail-card {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #3f51b5;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 13px;
+}
+
+/* GRID */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-grid label {
+  font-size: 12px;
+  color: #888;
+  display: block;
+}
+
+.detail-grid p {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ACTIONS */
+.detail-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-actions button {
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.detail-actions button:first-child {
+  background: #3f51b5;
+  color: white;
+}
+
+.detail-actions .edit {
+  background: #ff9800;
+  color: white;
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  margin-top: 40px;
+}
+/* TABS */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 16px;
+}
+
+/* TAB */
+.tab {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ACTIVE TAB */
+.tab.active {
+  border-bottom: 3px solid #3f51b5;
+  font-weight: 600;
+  color: #000;
+}
+
+/* HOVER */
+.tab:hover {
+  background: #f5f5f5;
+}
+
+/* TAB CONTENT */
+.tab-content {
+  margin-top: 10px;
+}

@@ -1,0 +1,160 @@
+<div class="dashboard">
+
+<div class="widget">
+  <div class="icon-blue">
+    <i class="fa-solid fa-users"></i>
+  </div>
+
+  <div class="widget-content">
+    <h3>Total Employees</h3>
+    <p>{{ totalEmployees }}</p>
+  </div>
+</div>
+
+
+  <div class="widget">
+    <div class="icon-blue">
+      <i class="fa-solid fa-building"></i>
+    </div>
+    <div class="widget-content">
+        <h3>Departments</h3>
+        <p>{{ totalDepartments }}</p>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="icon-orange">
+      <i class="fa-solid fa-indian-rupee-sign"></i>
+    </div>
+      <div class="widget-content">
+    <h3>Avg Salary</h3>
+    <p>₹{{ avgSalary | number }}</p>
+      </div>
+  </div>
+
+  <div class="widget">
+    <div class="icon-green">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+      <div class="widget-content">
+
+    <h3>Active</h3>
+    <p>{{ activeEmployees }}</p>
+      </div>
+  </div>
+
+</div>
+
+
+
+<div class="filters">
+
+  <!-- 🔍 Search -->
+  <div class="search-bar">
+    <i class="fa fa-search"></i>
+    <input
+      type="text"
+      placeholder="Search employees..."
+      [(ngModel)]="searchTerm"
+      (input)="applyFilters()"
+    />
+  </div>
+
+  <!-- 🏢 Department Filter -->
+  <select 
+    [(ngModel)]="selectedDepartment" 
+    (change)="applyFilters()">
+
+    <option *ngFor="let dept of departments" [value]="dept">
+      {{ dept === 'all' ? 'All Departments' : dept }}
+    </option>
+
+  </select>
+
+</div>
+
+
+
+<div *ngIf="pagedEmployees.length === 0" class="empty">
+  <i class="fa-solid fa-user-slash"></i>
+  <p>No employees found</p>
+</div>
+
+
+
+<div class="page-card">
+
+  <!-- Header -->
+  <div class="table-header">
+    <h2>Employee Directory</h2>
+    <span class="count">{{ employees.length }} Employees</span>
+  </div>
+
+  <!-- Table -->
+  <div class="table">
+
+    <!-- Header Row -->
+    <div class="row header">
+      <div>Employee</div>
+      <div>Email</div>
+      <div>Department</div>
+      <div>Actions</div>
+    </div>
+
+    <!-- Data Rows -->
+    <div class="row" *ngFor="let emp of pagedEmployees">
+
+      <!-- Name + ID -->
+      <div class="employee">
+        <div class="avatar">
+          {{ emp.firstName[0] }}
+        </div>
+
+        <div class="employee-info">
+          <div class="name">
+            {{ emp.firstName }} {{ emp.lastName }}
+          </div>
+          <div class="emp-id">
+            ID: EMP-{{ emp.id }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="email">
+        {{ emp.email }}
+      </div>
+
+      <!-- Department -->
+      <div class="department">
+        {{ emp.company?.department || 'Operations' }}
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <a [routerLink]="['/employee', emp.id]" class="view">View</a>
+        <button class="edit" (click)="editEmployee(emp)">Edit</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+
+    <button (click)="prevPage()" [disabled]="page === 1">
+      ← Prev
+    </button>
+
+    <span>
+      Page {{ page }} of {{ totalPages }}
+    </span>
+
+    <button (click)="nextPage()" [disabled]="page * pageSize >= employees.length">
+      Next →
+    </button>
+
+  </div>
+
+</div>

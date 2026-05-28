@@ -1,0 +1,325 @@
+/* =========================
+   PAGE CARD
+========================= */
+
+.page-card {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.count {
+  font-size: 13px;
+  color: #777;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+/* DASHBOARD CARD */
+.widget {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: all 0.2s ease;
+}
+
+.widget:hover {
+  transform: translateY(-4px);
+}
+
+/* ICON BASE */
+.icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON COLORS */
+.icon.blue { background: #3f51b5; }
+.icon.green { background: #4caf50; }
+.icon.orange { background: #ff9800; }
+.icon.pink { background: #e91e63; }
+
+/* ICON STYLE */
+.icon i {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* TEXT */
+.widget-content h3 {
+  margin: 0;
+  font-size: 13px;
+  color: #777;
+}
+
+.widget-content p {
+  margin: 4px 0 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* =========================
+   SEARCH + FILTERS
+========================= */
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* SEARCH BAR */
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+
+.search-bar i {
+  color: #888;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* DROPDOWN */
+select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+select:hover {
+  border-color: #3f51b5;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ROW */
+.row {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 2fr;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+/* HEADER ROW */
+.row.header {
+  background: #f4f4f4;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* HOVER */
+.row:hover {
+  background: #fafafa;
+}
+
+/* EMPLOYEE COLUMN */
+.employee {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* AVATAR */
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: #3f51b5;
+  color: white;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+/* NAME */
+.name {
+  font-weight: 500;
+}
+
+/* EMPLOYEE ID */
+.emp-id {
+  font-size: 12px;
+  color: #888;
+}
+
+/* EMAIL / DEPT */
+.email,
+.department {
+  font-size: 14px;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* VIEW LINK */
+.view {
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.view:hover {
+  text-decoration: underline;
+}
+
+/* BUTTON */
+button {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit {
+  background: #0288d1;
+  color: white;
+}
+
+.edit:hover {
+  background: #0277bd;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  background: #3f51b5;
+  color: white;
+  border-radius: 6px;
+}
+
+.pagination span {
+  font-size: 14px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty {
+  margin-top: 25px;
+  padding: 25px;
+
+  text-align: center;
+  color: #6b7280;
+
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+}
+
+.empty i {
+  font-size: 26px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.empty p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+}
